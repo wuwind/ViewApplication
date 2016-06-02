@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#696969">
+
+    <RelativeLayout
+        android:id="@+id/pull_to_refresh_head"
+        android:layout_width="match_parent"
+        android:gravity="bottom"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/contentView">
+
+            <ImageView
+                android:id="@+id/arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/arrow" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerInParent="true"
+                android:indeterminateDrawable="@anim/dialog_loading"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="12"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/pull_to_refresh"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/updated_at"
+                android:layout_width="match_parent"
+                android:layout_height="0dip"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top"
+                android:text="@string/updated_at"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</FrameLayout>
