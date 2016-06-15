@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.util.LruCache;
 
 import com.jakewharton.disklrucache.DiskLruCache;
-import com.wuwind.corelibrary.base.BaseApplication;
+import com.wuwind.corelibrary.base.CoreApplication;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +24,7 @@ public class BitmapCache implements IBitmapCache {
 
     private BitmapCache(File cacheFile, long maxDiskSize, int maxMemSize) {
         try {
-            diskLruCache = DiskLruCache.open(cacheFile, PackageUtil.getVersionCode(BaseApplication.context), 1, maxDiskSize);
+            diskLruCache = DiskLruCache.open(cacheFile, PackageUtil.getVersionCode(CoreApplication.context), 1, maxDiskSize);
         } catch (IOException e) {
             e.printStackTrace();
         }

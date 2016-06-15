@@ -5,10 +5,10 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath "com.android.tools.build:gradle:$GRADLE_PLUGIN_VERSION"
 
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$BINTRAY_PLUGIN_VERSION"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$MAVEN_GRADLE_PLUGIN_VERSION"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -22,4 +22,29 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+
+ext {
+    configuration = [
+            package          : "me.chunyu.spike.springrainnews",
+            buildToolsVersion: "23.0.1",
+            compileVersion   : 23,
+            minSdk           : 14,
+            targetSdk        : 23,
+            version_code     : 1,
+            version_name     : "0.0.1",
+    ]
+
+    libraries = [
+            supportVersion    : "23.4.0",
+            retrofit          : "2.0.0-beta2",
+            rxandroid         : "1.1.0",
+            dagger            : "2.0",
+            javax_annotation  : "10.0-b28",
+            butterknife       : "7.0.1",
+            glide             : "3.6.1",
+            recycler_animators: "2.1.0",
+            circleimageview   : "2.0.0"
+    ]
 }

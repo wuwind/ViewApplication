@@ -14,7 +14,7 @@ import rx.Subscription;
  * Created by Wuhf on 2016/4/1.
  * Description ：
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class CoreFragment extends Fragment {
 
     protected Subscription subscription;
 

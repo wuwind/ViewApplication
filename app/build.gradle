@@ -1,28 +1,35 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion COMPILE_SDK_VERSION
+    buildToolsVersion BUILD_TOOLS_VERSION
 
     defaultConfig {
         applicationId "com.wuwind.viewapplication"
-        minSdkVersion 11
+        minSdkVersion MIN_SDK_VERSION
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
+
+        debug {
+            manifestPlaceholders = [isDebug: true]
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [isDebug: false]
         }
     }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    testCompile "junit:junit:$JUNIT_VERSION"
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
     compile project(':corelibrary')
     compile 'com.facebook.shimmer:shimmer:0.1.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

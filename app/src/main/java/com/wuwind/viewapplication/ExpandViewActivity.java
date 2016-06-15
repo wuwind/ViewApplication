@@ -2,14 +2,16 @@ package com.wuwind.viewapplication;
 
 import android.widget.TextView;
 
-import com.wuwind.corelibrary.base.BaseActivity;
+import com.wuwind.corelibrary.base.CoreActivity;
 import com.wuwind.corelibrary.utils.LogUtil;
+import com.wuwind.corelibrary.utils.ManifestConfig;
 import com.wuwind.corelibrary.utils.PackageUtil;
+import com.wuwind.corelibrary.utils.ToastUtil;
 import com.wuwind.viewapplication.widget.ShimmerTextView;
 
 import butterknife.Bind;
 
-public class ExpandViewActivity extends BaseActivity {
+public class ExpandViewActivity extends CoreActivity {
 
 
     @Bind(R.id.last2View)
@@ -24,6 +26,13 @@ public class ExpandViewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
+        boolean isDebug = ManifestConfig.getBooleanMetaValue(this, "isDebug");
+
+        ToastUtil.show(this, isDebug+"");
+
+        LogUtil.e(0, isDebug+"");
+
         LogUtil.e(0, PackageUtil.getMyUUID(this));
         lastView.setDisplay(ShimmerTextView.bottom, 0xaaffff00, 100);
 //        shimmer.setBaseAlpha(0);

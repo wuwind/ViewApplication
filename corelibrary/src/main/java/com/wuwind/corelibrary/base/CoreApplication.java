@@ -8,7 +8,7 @@ import com.wuwind.corelibrary.utils.NetUtil;
 import com.wuwind.corelibrary.utils.PackageUtil;
 
 
-public abstract class BaseApplication extends Application {
+public abstract class CoreApplication extends Application {
 
     public static String uid;
     public static Context context;

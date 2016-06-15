@@ -21,7 +21,7 @@ import rx.Subscription;
  * Created by Wuhf on 2016/4/1.
  * Description ：
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class CoreActivity extends AppCompatActivity {
 
     private ExitReceiver exitReceiver;
     protected Subscription subscription;

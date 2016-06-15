@@ -33,24 +33,24 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'io.reactivex:rxjava:1.1.2'
-    compile 'io.reactivex:rxandroid:1.1.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:recyclerview-v7:23.2.0'
-    compile 'com.android.support:cardview-v7:23.2.0'
-    compile 'com.android.support:palette-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.1'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.1'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'jp.wasabeef:glide-transformations:2.0.1'
-    compile 'com.jakewharton:disklrucache:2.0.2'
-    compile 'org.greenrobot:greendao:2.2.0'
-    compile 'com.umeng.analytics:analytics:latest.integration'
+    testCompile "junit:junit:$JUNIT_VERSION"
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:support-v4:$SUPPORT_LIBRARY_VERSION"
+    compile "io.reactivex:rxjava:$RXJAVA_VERSION"
+    compile "io.reactivex:rxandroid:$RXANDROID_VERSION"
+    compile "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
+    compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:palette-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:design:$SUPPORT_LIBRARY_VERSION"
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-gson:$CONVERTER_GSON_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava:$ADAPTER_RXJAVA_VERSION"
+    compile "com.github.bumptech.glide:glide:$GLIDE_VERSION"
+    compile "jp.wasabeef:glide-transformations:$GLIDE_TRANSFORMATIONS_VERSION"
+    compile "com.jakewharton:disklrucache:$DISKLRUCACHE_VERSION"
+    compile "org.greenrobot:greendao:$GREENDAO_VERSION"
+    compile "com.umeng.analytics:analytics:latest.integration"
 }
 
 
@@ -106,5 +106,20 @@ bintray {
         licenses = ["Apache-2.0"]
         publish = true
     }
+}
+
+
+
+//    ---打 jar
+
+task clearJar(type: Delete) {
+    delete 'build/libs/yutils.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename ('classes.jar', 'yutils.jar')
 }
 

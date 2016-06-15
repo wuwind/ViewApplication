@@ -1,6 +1,6 @@
 package com.wuwind.corelibrary.network;
 
-import com.wuwind.corelibrary.base.BaseApplication;
+import com.wuwind.corelibrary.base.CoreApplication;
 
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
@@ -19,10 +19,10 @@ public class ObservableFactory {
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
     private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
-//    private static CallAdapter.Factory rxJavaCallAdapterFactory = RxCacheCallAdapterFactory.create(BasicCache.fromCtx(BaseApplication.context));
+//    private static CallAdapter.Factory rxJavaCallAdapterFactory = RxCacheCallAdapterFactory.create(BasicCache.fromCtx(CoreApplication.context));
 
     public static <T> T createFrom(Class<T> classServer) {
-        return createFrom(BaseApplication.baseUrl, classServer);
+        return createFrom(CoreApplication.baseUrl, classServer);
     }
 
     public static <T> T createFrom(String baseUrl, Class<T> classServer) {

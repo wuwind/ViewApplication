@@ -6,7 +6,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.os.storage.StorageManager;
 
-import com.wuwind.corelibrary.base.BaseApplication;
+import com.wuwind.corelibrary.base.CoreApplication;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -138,9 +138,9 @@ public class FilePathUtil {
     public static String getDiskCacheDir() {
         String cachePath;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
-            cachePath = BaseApplication.context.getExternalCacheDir().getPath();
+            cachePath = CoreApplication.context.getExternalCacheDir().getPath();
         } else {
-            cachePath = BaseApplication.context.getCacheDir().getPath();
+            cachePath = CoreApplication.context.getCacheDir().getPath();
         }
         return cachePath;
     }
