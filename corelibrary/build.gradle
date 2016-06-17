@@ -51,6 +51,7 @@ dependencies {
     compile "com.jakewharton:disklrucache:$DISKLRUCACHE_VERSION"
     compile "org.greenrobot:greendao:$GREENDAO_VERSION"
     compile "com.umeng.analytics:analytics:latest.integration"
+    compile "org.greenrobot:eventbus:$EVENTBUS_VERSION"
 }
 
 

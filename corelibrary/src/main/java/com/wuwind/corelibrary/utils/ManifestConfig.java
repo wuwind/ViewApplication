@@ -19,7 +19,6 @@ public class ManifestConfig {
 	 * @param cls
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	private static <T> T getMetaValue(Context context, String metaKey,
 			Class<T> cls) throws RuntimeException {
 		Bundle metaData = null;

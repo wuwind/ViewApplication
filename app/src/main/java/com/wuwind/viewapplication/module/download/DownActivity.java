@@ -13,6 +13,10 @@ import com.wuwind.corelibrary.network.download.DLManager;
 import com.wuwind.corelibrary.network.download.interfaces.SimpleDListener;
 import com.wuwind.viewapplication.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public class DownActivity extends Activity {
     private static final String[] URLS = {
             "https://raw.githubusercontent.com/wuwind/FApplication/master/app/pointCamera/apoint.apk",
@@ -79,6 +83,7 @@ public class DownActivity extends Activity {
                                 @Override
                                 public void onProgress(int progress) {
                                     pbDLs[finalI].setProgress(progress);
+                                    EventBus.getDefault().post(new Message(progress));
                                 }
 
                                 @Override
@@ -91,7 +96,7 @@ public class DownActivity extends Activity {
             });
         }
 
-        Button[] btnStops = new Button[RES_ID_BTN_STOP.length];
+        btnStops = new Button[RES_ID_BTN_STOP.length];
         for (int i = 0; i < btnStops.length; i++) {
             btnStops[i] = (Button) findViewById(RES_ID_BTN_STOP[i]);
             final int finalI = i;
@@ -134,11 +139,86 @@ public class DownActivity extends Activity {
         saveDir = Environment.getExternalStorageDirectory() + "/AigeStudio/";
     }
 
+        Button[] btnStops;
     @Override
     protected void onDestroy() {
         for (String url : URLS) {
             DLManager.getInstance(this).dlStop(url);
         }
         super.onDestroy();
+//        long result = 0;
+//        for(int i=1; i<=50; i++) {
+//            long m = 1;
+//            for(int j = 2; j<=i; j++) {
+//                m *= j;
+//            }
+//            if(i % 2 != 0) {
+//                result += m;
+//            } else {
+//                result -= m;
+//            }
+//        }
+//        printf("%ld", result);
+//        Log.e("mian", result+"");
+
+//        for (int i=1; i<101; i++) {
+//            for(int j=2; j<=i; j++) {
+//                if(i == j)
+//                    printf("%d", i);
+//                if(i % j == 0)
+//                    break;
+//            }
+//        }
+//
+//        int n, m;
+//        for (int i = 2; i < 101; i++) {
+//            m = 1;
+//            n = i / 2;
+//            for (int j = 2; j <= n; j++) {
+//                if (i % j == 0) {
+//                    m = 0;
+//                    break;
+//                }
+//            }
+//            if (m == 1)
+//                Log.e("mian", i+"");
+//        }
+
+//        void main()
+//        {
+//            int num;
+//            printf("input\t:");
+//            scanf("%d",&num);
+//            if(num < 0 )
+//                num =
+//            printf("%d\t%d\n",num,abs(num));
+//        }
+
+        new ThreadLocal<Integer>(){
+            @Override
+            protected Integer initialValue() {
+                return super.initialValue();
+            }
+        };
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getMessage(Message o) {
+        btnStops[0].setText(o.progress+"");
+    }
+
+    class Message {
+        public int progress;
+
+        public Message(int progress) {
+            this.progress = progress;
+        }
+    }
+
 }

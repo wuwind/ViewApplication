@@ -293,7 +293,6 @@ public final class DLManager {
         return DLDBManager.getInstance(context).queryTaskInfo(url);
     }
 
-    @Deprecated
     public DLDBManager getDLDBManager() {
         return DLDBManager.getInstance(context);
     }

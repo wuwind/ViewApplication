@@ -3,9 +3,7 @@ package com.wuwind.viewapplication;
 import android.widget.TextView;
 
 import com.wuwind.corelibrary.base.CoreActivity;
-import com.wuwind.corelibrary.utils.LogUtil;
 import com.wuwind.corelibrary.utils.ManifestConfig;
-import com.wuwind.corelibrary.utils.PackageUtil;
 import com.wuwind.corelibrary.utils.ToastUtil;
 import com.wuwind.viewapplication.widget.ShimmerTextView;
 
@@ -31,9 +29,6 @@ public class ExpandViewActivity extends CoreActivity {
 
         ToastUtil.show(this, isDebug+"");
 
-        LogUtil.e(0, isDebug+"");
-
-        LogUtil.e(0, PackageUtil.getMyUUID(this));
         lastView.setDisplay(ShimmerTextView.bottom, 0xaaffff00, 100);
 //        shimmer.setBaseAlpha(0);
 //        shimmer.setDuration(2000);

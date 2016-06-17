@@ -27,7 +27,7 @@ public class OkhttpInterceptorCache {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                if (!NetUtil.isConnect(CoreApplication.context)) {
+                if (!NetUtil.isMobileConnected(CoreApplication.context)) {
                     request = request.newBuilder()
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
@@ -36,7 +36,7 @@ public class OkhttpInterceptorCache {
 
                 Response response = chain.proceed(request);
 
-                if (NetUtil.isConnect(CoreApplication.context)) {
+                if (NetUtil.isMobileConnected(CoreApplication.context)) {
                     int maxAge = 0 * 60; // 有网络时 设置缓存超时时间0个小时
                     LogUtil.e("has network maxAge=" + maxAge);
                     response.newBuilder()

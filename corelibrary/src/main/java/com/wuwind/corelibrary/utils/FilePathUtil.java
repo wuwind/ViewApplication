@@ -6,25 +6,20 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.os.storage.StorageManager;
 
-import com.wuwind.corelibrary.base.CoreApplication;
-
 import java.io.File;
 import java.lang.reflect.Method;
 
 /**
  * SD卡目录工具类
- *
- * @author WuRS
  */
 public class FilePathUtil {
 
-    public static String MAIN_PATH = "wusysFile";
+    public static String MAIN_PATH = "mainFile";
     public static String ERROR_PATH = "error";
     public static String CACHE_PATH = "cache";
 
     /**
      * 文件主目录
-     *
      * @return
      */
     public static String getMainPath() {
@@ -90,34 +85,9 @@ public class FilePathUtil {
     }
 
     /**
-     * 删除文件或文件夹
-     *
-     * @param filePath
+     * 取SD卡路径
+     * @return
      */
-    public static void deleteFile(String filePath) {
-        deleteFile(new File(filePath));
-    }
-
-    /**
-     * 删除文件或文件夹
-     */
-    public static void deleteFile(File file) {
-        if (file != null && file.exists()) {
-            if (file.isDirectory()) {
-                File[] files = file.listFiles();
-                if (files == null) {
-                    return;
-                }
-                for (int i = 0; i < files.length; i++) {
-                    deleteFile(files[i]);
-                }
-            } else {
-                file.delete();
-            }
-        }
-    }
-
-    // 取SD卡路径
     public static String getSDPath() {
         File sdDir = null;
         boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
@@ -127,7 +97,6 @@ public class FilePathUtil {
         return sdDir.toString();
     }
 
-
     /**
      * 当SD卡存在或者SD卡不可被移除的时候，就调用getExternalCacheDir()方法来获取缓存路径，
      * 否则就调用getCacheDir()方法来获取缓存路径。前者获取到的就是 /sdcard/Android/data/<application package>/cache 这个路径，
@@ -135,17 +104,22 @@ public class FilePathUtil {
      *
      * @return
      */
-    public static String getDiskCacheDir() {
+    public static String getDiskCacheDir(Context context) {
         String cachePath;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
-            cachePath = CoreApplication.context.getExternalCacheDir().getPath();
+            cachePath = context.getExternalCacheDir().getPath();
         } else {
-            cachePath = CoreApplication.context.getCacheDir().getPath();
+            cachePath = context.getCacheDir().getPath();
         }
         return cachePath;
     }
 
-    // 判断所传入的文件是否大于SDcard剩余的容量
+    /**
+     * 判断所传入的文件是否大于SDcard剩余的容量
+     * @param fileSize
+     * @return
+     * @throws Exception
+     */
     public static boolean isSDSizeEnough(long fileSize) throws Exception {
         try {
             if ("".equals(getSDPath())) {
@@ -180,6 +154,5 @@ public class FilePathUtil {
             return null;
         }
     }
-
 
 }

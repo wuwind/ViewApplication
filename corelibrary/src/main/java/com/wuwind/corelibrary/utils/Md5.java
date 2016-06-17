@@ -7,6 +7,11 @@ import java.util.TreeMap;
 
 public class Md5 {
 
+    /**
+     * 转MD5
+     * @param str
+     * @return
+     */
     public static String Md5(String str) {
         try {
             MessageDigest digest = MessageDigest.getInstance("md5");
@@ -24,7 +29,6 @@ public class Md5 {
             }
             return sb.toString();
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;

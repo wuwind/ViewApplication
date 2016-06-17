@@ -5,13 +5,13 @@ import android.content.SharedPreferences;
 
 /**
  * @description  SharedPreferences相关工具类
- * PreferencesUtils
+ * SharedPreferencesUtils
  */
-public class PreferencesUtils {
+public class SharedPreferencesUtils {
 
     public static String PREFERENCE_NAME = "spf";
 
-    private PreferencesUtils() {
+    private SharedPreferencesUtils() {
         throw new AssertionError();
     }
 

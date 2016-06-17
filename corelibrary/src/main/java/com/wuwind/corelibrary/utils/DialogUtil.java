@@ -9,8 +9,6 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.wuwind.corelibrary.R;
-
 
 /**
  * APP对话框的样式统一控制
@@ -24,20 +22,47 @@ public class DialogUtil {
      * @param layoutResID 布局文件id
      * @return Dialog
      */
-    public static Dialog createDialog(Context context, int layoutResID) {
-        Dialog dialog = new MDialog(context, R.style.base_dialog);
+    public static Dialog createDialog(Context context, int layoutResID, int themeResId) {
+        Dialog dialog = new MDialog(context, themeResId);
         dialog.setContentView(layoutResID);
         return dialog;
     }
 
-    public static Dialog createDialog(Context context, View view) {
-        Dialog dialog = new MDialog(context, R.style.base_dialog);
+    /**
+     * 使用统一的风格创建对话框
+     * @param context
+     * @param view
+     * @param themeResId
+     * @return
+     */
+    public static Dialog createDialog(Context context, View view, int themeResId) {
+        Dialog dialog = new MDialog(context, themeResId);
         dialog.setContentView(view);
         return dialog;
     }
 
-    public static Dialog createDialogAndShow(Context context, int layoutResID) {
-        Dialog dialog = createDialog(context, layoutResID);
+    /**
+     * 创建并显示
+     * @param context
+     * @param layoutResID 布局id
+     * @param themeResId
+     * @return
+     */
+    public static Dialog createDialogAndShow(Context context, int layoutResID, int themeResId) {
+        Dialog dialog = createDialog(context, layoutResID, themeResId);
+        dialog.show();
+        return dialog;
+    }
+
+    /**
+     * 创建并显示
+     * @param context
+     * @param view
+     * @param themeResId
+     * @return
+     */
+    public static Dialog createDialogAndShow(Context context, View view, int themeResId) {
+        Dialog dialog = createDialog(context, view, themeResId);
         dialog.show();
         return dialog;
     }

@@ -172,7 +172,9 @@ public class FileUtils {
 
 
     /**
-     * 将拍下来的照片存放在SD卡中
+     * @param filePath 文件路径
+     * @param data 字节数组
+     * @return
      */
     public static boolean writeFile(String filePath, byte[] data) {
         if (data.length <= 0) {
@@ -201,6 +203,10 @@ public class FileUtils {
     }
 
 
+    /**
+     * 移动文件
+     * see {@link #moveFile(File, File)}
+     */
     public static void moveFile(String sourceFilePath, String destFilePath) {
         if (TextUtils.isEmpty(sourceFilePath) || TextUtils.isEmpty(destFilePath)) {
             throw new RuntimeException("Both sourceFilePath and destFilePath cannot be null.");
@@ -209,6 +215,7 @@ public class FileUtils {
     }
 
     /**
+     * 移动文件
      * @param srcFile
      * @param destFile
      */
@@ -481,21 +488,28 @@ public class FileUtils {
 
     /**
      * delete file or directory
+     * see {@link #deleteFile(File)}
+     */
+    public static boolean deleteFile(String path) {
+        if (isBlank(path)) {
+            return true;
+        }
+        File file = new File(path);
+        return deleteFile(file);
+    }
+
+    /**
+     * delete file or directory
      * <ul>
      * <li>if path is null or empty, return true</li>
      * <li>if path not exist, return true</li>
      * <li>if path exist, delete recursion. return true</li>
      * <ul>
      *
-     * @param path
+     * @param file
      * @return
      */
-    public static boolean deleteFile(String path) {
-        if (isBlank(path)) {
-            return true;
-        }
-
-        File file = new File(path);
+    public static boolean deleteFile(File file) {
         if (!file.exists()) {
             return true;
         }

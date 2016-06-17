@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.wuwind.corelibrary.utils.CrashHandler;
 import com.wuwind.corelibrary.utils.NetUtil;
-import com.wuwind.corelibrary.utils.PackageUtil;
+import com.wuwind.corelibrary.utils.SystemUtils;
 
 
 public abstract class CoreApplication extends Application {
@@ -20,9 +20,9 @@ public abstract class CoreApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
-        uid = PackageUtil.getMyUUID(context);
-        networkAvailable = NetUtil.isConnect(context);
-        versionCode = PackageUtil.getVersionCode(this);
+        uid = SystemUtils.getMyUUID(context);
+        networkAvailable = NetUtil.isNetworkConnected(context);
+        versionCode = SystemUtils.getVersionCode(this);
         init();
     }
 

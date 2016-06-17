@@ -1,5 +1,6 @@
 package com.wuwind.corelibrary.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.util.LruCache;
@@ -15,7 +16,7 @@ import java.io.OutputStream;
 
 /**
  * Created by Wuhf on 2016/5/6.
- * Description ：
+ * Description ：bitmap缓存
  */
 public class BitmapCache implements IBitmapCache {
 
@@ -24,7 +25,7 @@ public class BitmapCache implements IBitmapCache {
 
     private BitmapCache(File cacheFile, long maxDiskSize, int maxMemSize) {
         try {
-            diskLruCache = DiskLruCache.open(cacheFile, PackageUtil.getVersionCode(CoreApplication.context), 1, maxDiskSize);
+            diskLruCache = DiskLruCache.open(cacheFile, SystemUtils.getVersionCode(CoreApplication.context), 1, maxDiskSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -35,10 +36,10 @@ public class BitmapCache implements IBitmapCache {
     private static final int REASONABLE_DISK_SIZE = (int) (Runtime.getRuntime().maxMemory() / 3);
     private static final int REASONABLE_MEM_ENTRIES = 100 * 1024 * 1024;
 
-    public static BitmapCache create() {
+    public static BitmapCache create(Context context) {
         File file = null;
         try {
-            file = new File(FilePathUtil.getDiskCacheDir(), "bitmapCache");
+            file = new File(FilePathUtil.getDiskCacheDir(context), "bitmapCache");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,4 +92,13 @@ public class BitmapCache implements IBitmapCache {
         }
         return null;
     }
+
+
+}
+
+interface IBitmapCache {
+
+    void addToCache(String key, Bitmap bitmap);
+
+    Bitmap getFromCache(String key);
 }

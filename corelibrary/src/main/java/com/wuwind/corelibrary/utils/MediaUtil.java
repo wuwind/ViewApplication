@@ -12,8 +12,7 @@ import java.io.File;
 public class MediaUtil {
 
 	/**
-	 * 拍照
-	 * 
+	 * 调用系统拍照
 	 * @param activity
 	 * @param requestCode
 	 * @return 存储路径
@@ -47,14 +46,22 @@ public class MediaUtil {
 		}
 	}
 
-	// 本地相册
+	/**
+	 * 从相册获取图片
+	 * @param activity
+	 * @param requestCode
+	 */
 	public static void getImageFromAlbum(Activity activity, int requestCode) {
 		Intent intent = new Intent(Intent.ACTION_PICK);
 		intent.setType("image/*");// 相片类型
 		activity.startActivityForResult(intent, requestCode);
 	}
 
-	// 查看图片
+	/**
+	 * 调用系统图片查看
+	 * @param activity
+	 * @param path
+	 */
 	public static void showPicture(Activity activity, String path) {
 		File file = new File(path);
 		// 下方是是通过Intent调用系统的图片查看器的关键代码
@@ -64,16 +71,24 @@ public class MediaUtil {
 		activity.startActivity(intent);
 	}
 
-	// 声音播放
+	/**
+	 * 调用系统声音播放
+	 * @param activity
+	 * @param path
+	 */
 	public static void playAudio(Activity activity, String path) {
 		File file = new File(path);
-		// 下方是是通过Intent调用系统的图片查看器的关键代码
 		Intent intent = new Intent();
 		intent.setAction(Intent.ACTION_VIEW);
 		intent.setDataAndType(Uri.fromFile(file), "audio/*");
 		activity.startActivity(intent);
 	}
 
+	/**
+	 * 拨打电话
+	 * @param activity
+	 * @param phoneNumber
+	 */
 	public static final void callPhone(Activity activity, String phoneNumber) {
 		Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
 				+ phoneNumber));
