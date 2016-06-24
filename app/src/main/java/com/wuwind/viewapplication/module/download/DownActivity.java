@@ -139,7 +139,8 @@ public class DownActivity extends Activity {
         saveDir = Environment.getExternalStorageDirectory() + "/AigeStudio/";
     }
 
-        Button[] btnStops;
+    Button[] btnStops;
+
     @Override
     protected void onDestroy() {
         for (String url : URLS) {
@@ -194,7 +195,7 @@ public class DownActivity extends Activity {
 //            printf("%d\t%d\n",num,abs(num));
 //        }
 
-        new ThreadLocal<Integer>(){
+        new ThreadLocal<Integer>() {
             @Override
             protected Integer initialValue() {
                 return super.initialValue();
@@ -206,11 +207,16 @@ public class DownActivity extends Activity {
     protected void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+
+//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(5, 15, 200, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5));
+
     }
+
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getMessage(Message o) {
-        btnStops[0].setText(o.progress+"");
+        btnStops[0].setText(o.progress + "");
     }
 
     class Message {
