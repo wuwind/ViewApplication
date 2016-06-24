@@ -16,10 +16,10 @@ public class MyDaoGenerator {
 	public static void main(String[] args) throws IOException, Exception {
 		// Schema schema = new Schema(1, "com.yuexunit.zjll.db");
 		// addBean(schema);
-		Schema schema = new Schema(1, "com.yuexunit.tally.db");
+		Schema schema = new Schema(1, "com.wuwind.db");
 		tallyUrl(schema);
 		// 生成的entity和dao文件夹路径
-		new DaoGenerator().generateAll(schema, "D:\\AndroidStudioProjects\\ViewApplication\\greendaogenerator\\src-gen");
+		new DaoGenerator().generateAll(schema, "\\ViewApplication\\greendaogenerator\\src-gen");
 	}
 	
 	private static void tallyUrl(Schema schema) {
